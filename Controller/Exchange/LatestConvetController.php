@@ -27,19 +27,9 @@ class LatestConvetController
         $request = "{$url}?{$qs}"; // create the request URL
 
 
-        $curl = curl_init(); // Get cURL resource
-
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $request,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_RETURNTRANSFER => 1
-        ));
-
-        $response = curl_exec($curl); // Send the request, save the response
-
+        $response = $rep->defualtCurl($request, $headers);
         $result = json_decode($response, true);
         var_dump($result);
-        curl_close($curl); // Close request
+    
     }
 }

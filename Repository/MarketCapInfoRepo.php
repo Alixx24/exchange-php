@@ -8,9 +8,22 @@ class MarketCapInfoRepo
     {
        return $headers = [
             'Accepts: application/json',
-            'X-CMC_PRO_API_KEY: a0e9ce7c-43fd-491f-8c52-63874b99b19e',
+            'X-CMC_PRO_API_KEY: **',
         ];
       
     }
-    // return 'a0e9ce7c-43fd-491f-8c52-63874b99b19e';
+    
+    public function defualtCurl($request, $headers)
+    {
+        $curl = curl_init(); // Get cURL resource
+
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $request,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_RETURNTRANSFER => 1
+        ));
+
+       return $response = curl_exec($curl); // Send the request, save the response
+    }
 }
